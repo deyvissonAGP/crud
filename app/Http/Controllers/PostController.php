@@ -43,8 +43,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        try{
+
         $data = $request->all();
         $post = $this->post->create($data);
+        flash('Post criado com sucesso')->success();
+        return redirect()->route('posts.index');
+        }catch(\Exception $e) {
+            if(env('APP_DEBUG')){
+                //retorna a mensagem do erro real
+                flash($e->getMessage())->warning();
+                return redirect()->back();
+            }
+            //retorna a mensagem de erro padrao
+            flash('Post não foi criado com sucesso');
+            return redirect()->back();
+       }
     }
 
     /**
@@ -55,9 +69,21 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        try{
+            
         $post = $this->post->findOrFail($id);
 
         return view('posts.edit', compact('post'));
+        }catch(\Exception $e) {
+            if(env('APP_DEBUG')){
+                //retorna a mensagem do erro real
+                flash($e->getMessage())->warning();
+                return redirect()->back();
+            }
+            //retorna a mensagem de erro padrao
+            flash('Post não encontrado...')->warning();
+            return redirect()->back();
+       }
     }
 
     /**
@@ -80,10 +106,24 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        try{
 
-        $post = $this->post->findOrFail($id);
-        $post->update($data);
+            $data = $request->all();
+
+            $post = $this->post->findOrFail($id);
+            $post->update($data);
+            flash('Post Atualizado com Sucesso')->success();
+            return redirect()->route('posts.index');
+        }catch(\Exception $e) {
+            if(env('APP_DEBUG')){
+                //retorna a mensagem do erro real
+                flash($e->getMessage())->warning();
+                return redirect()->back();
+            }
+            //retorna a mensagem de erro padrao
+            flash('Post não foi atualizado...')->warning();
+            return redirect()->back();
+       }
     }
 
     /**
@@ -94,7 +134,22 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+       try{
+
         $post = $this->post->findOrFail($id);
         $post->delete();
+        flash('Post removido com Sucesso')->success();
+        return redirect()->route('posts.index');
+       
+        } catch(\Exception $e) {
+            if(env('APP_DEBUG')){
+                //retorna a mensagem do erro real
+                flash($e->getMessage())->warning();
+                return redirect()->back();
+            }
+            //retorna a mensagem de erro padrao
+            flash('Post não pode ser removido')->warning();
+            return redirect()->back();
+       }
     }
 }
