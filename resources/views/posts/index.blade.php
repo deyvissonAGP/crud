@@ -4,6 +4,7 @@
     <div class="col-12">
         <a href="{{route('posts.create')}}" class="btn btn-lg btn-success">Criar Postagem</a>
     </div>
+    <br>
     <table class="table">
         <thead>
             <tr>

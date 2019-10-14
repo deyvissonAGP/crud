@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = $this->post->paginate(10);
+        $posts = $this->post->orderBy('title', 'DESC')->paginate(10);
 
         return view('posts.index', compact('posts'));
     }
@@ -43,7 +43,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $data = $request->all();
+        $post = $this->post->create($data);
     }
 
     /**
@@ -54,7 +55,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = $this->post->findOrFail($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -77,7 +80,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $post = $this->post->findOrFail($id);
+        $post->update($data);
     }
 
     /**
@@ -88,6 +94,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = $this->post->findOrFail($id);
+        $post->delete();
     }
 }
