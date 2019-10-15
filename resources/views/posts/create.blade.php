@@ -13,5 +13,6 @@
     </div>
 
     <button type="submit" class="btn btn-lg btn-success">Criar Post</button>
+    <a href="{{route('posts.index')}}" class="btn btn-lg btn-info">Voltar</a>
 </form>
 @endsection

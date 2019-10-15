@@ -2,7 +2,7 @@
 
 @section('content')
 <form action="{{route('posts.update', ['post' => $post->id])}}" method="post">
-    {{-- csrf_field() --}}
+    <!-- {{-- csrf_field() --}} -->
     @csrf
     @method("PUT")
     <div class="form-group">

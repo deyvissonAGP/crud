@@ -32,7 +32,6 @@ Route::get('lazy-colections', function(){
     }
 });
 
-
 //Rotas para trabalho em nosso crud de posts
 Route::resource('posts','PostController');
 

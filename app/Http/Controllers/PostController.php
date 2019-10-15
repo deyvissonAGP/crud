@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = $this->post->orderBy('title', 'DESC')->paginate(10);
+        $posts = $this->post->orderBy('title', 'DESC')->paginate(5);
 
         return view('posts.index', compact('posts'));
     }
@@ -49,7 +49,9 @@ class PostController extends Controller
         $post = $this->post->create($data);
         flash('Post criado com sucesso')->success();
         return redirect()->route('posts.index');
-        }catch(\Exception $e) {
+        }
+        catch(\Exception $e)
+        {
             if(env('APP_DEBUG')){
                 //retorna a mensagem do erro real
                 flash($e->getMessage())->warning();
@@ -74,7 +76,9 @@ class PostController extends Controller
         $post = $this->post->findOrFail($id);
 
         return view('posts.edit', compact('post'));
-        }catch(\Exception $e) {
+        }
+        catch(\Exception $e) 
+        {
             if(env('APP_DEBUG')){
                 //retorna a mensagem do erro real
                 flash($e->getMessage())->warning();
@@ -114,7 +118,9 @@ class PostController extends Controller
             $post->update($data);
             flash('Post Atualizado com Sucesso')->success();
             return redirect()->route('posts.index');
-        }catch(\Exception $e) {
+        }
+        catch(\Exception $e) 
+        {
             if(env('APP_DEBUG')){
                 //retorna a mensagem do erro real
                 flash($e->getMessage())->warning();
@@ -141,7 +147,9 @@ class PostController extends Controller
         flash('Post removido com Sucesso')->success();
         return redirect()->route('posts.index');
        
-        } catch(\Exception $e) {
+        } 
+        catch(\Exception $e) 
+        {
             if(env('APP_DEBUG')){
                 //retorna a mensagem do erro real
                 flash($e->getMessage())->warning();
