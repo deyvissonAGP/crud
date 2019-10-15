@@ -11,6 +11,8 @@
                 <th>#</th>
                 <th>Titulo</th>
                 <th>Criado em</th>
+                <th>Atualizado em</th>
+                <th>Opções</th>                
             </tr>
         </thead>
         <tbody>
@@ -22,7 +24,16 @@
                     {{$post->title}}
                     </a>
                 </td>
-                <td>{{$post->created_at}}</td>
+                <td>
+                {{$post->created_at}}
+                </td>
+                <td>
+                {{$post->updated_at}}
+                </td>
+                <td>
+                <a href="{{route('posts.show', ['post' => $post->id])}}"> <button type="submit" class="btn btn-lg btn-success">Editar</button>
+                <button type="submit" class="btn btn-lg btn-danger">Apagar</button>
+                </td>
             </tr>
             @empty
                 <tr>
