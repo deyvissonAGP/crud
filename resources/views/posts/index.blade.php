@@ -8,11 +8,7 @@
                 <th>Titulo</th>
                 <th>Criado em</th>
                 <th>Atualizado em</th>
-<<<<<<< HEAD
                 <th>Ação</th>
-=======
-                <th>Opções</th>                
->>>>>>> 253eb80fd805a93f8d6022ac9202a3f5637b21a6
             </tr>
         </thead>
         <tbody>
@@ -27,23 +23,13 @@
                     </a>
                 </td>
                 <td>
-<<<<<<< HEAD
                     {{$post->created_at}}
                 </td>
                 <td>
                     {{$post->updated_at}}                
                 </td>
                 <td>
-                <a href="{{route('posts.show', ['post' => $post->id])}}"><button type="submit" class="btn btn-lg btn-success">Atualizar</button>
-=======
-                {{$post->created_at}}
-                </td>
-                <td>
-                {{$post->updated_at}}
-                </td>
-                <td>
                 <a href="{{route('posts.show', ['post' => $post->id])}}"> <button type="submit" class="btn btn-lg btn-success">Editar</button>
->>>>>>> 253eb80fd805a93f8d6022ac9202a3f5637b21a6
                 <button type="submit" class="btn btn-lg btn-danger">Apagar</button>
                 </td>
             </tr>
